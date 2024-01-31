@@ -29,19 +29,20 @@ jobs:
         git config --global user.email "$author_email"
         git config --global user.name "$author_name"
         
-    - name: Perform rebase
+    - name: Merge
       run: |
         git fetch origin main
         git checkout release/2.14.0
         GIT_MERGE_AUTOEDIT=no git merge main
+        git push origin release/2.14.0 --force
 
-    - name: Push changes
-      uses: CasperWA/push-protected@v2.15.0
-      with:
-        token: ${{ secrets.MY_TOKEN }}
-        branch: release/2.14.0
-        unprotect_reviews: False
-        force: True
+    # - name: Push changes
+    #   uses: CasperWA/push-protected@v2.15.0
+    #   with:
+    #     token: ${{ secrets.MY_TOKEN }}
+    #     branch: release/2.14.0
+    #     unprotect_reviews: False
+    #     force: True
   #     - name: checkout
   #       uses: actions/checkout@v2
   #     - name: merge
