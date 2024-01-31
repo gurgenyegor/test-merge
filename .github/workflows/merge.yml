@@ -31,15 +31,14 @@ jobs:
         git fetch origin main
         git checkout release/2.14.0
         git merge origin/main
-        git push origin release/2.14.0 --force
 
-    # - name: Push changes
-    #   uses: CasperWA/push-protected@v2
-    #   with:
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     branch: release/2.14.0
-    #     unprotect_reviews: True
-    #     force: True
+    - name: Push changes
+      uses: CasperWA/push-protected@v2.15.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: release/2.14.0
+        unprotect_reviews: True
+        force: True
   #     - name: checkout
   #       uses: actions/checkout@v2
   #     - name: merge
