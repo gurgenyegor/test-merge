@@ -9,6 +9,10 @@ jobs:
   update-cms-master:
     name: Merge master into release after a PR is merged
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -16,6 +20,6 @@ jobs:
         uses: mtanzi/action-automerge@v1
         id: merge
         with:
-          github_token: ${{ github.token }}
-          source: 'master'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source: 'main'
           target: 'release/2.14.0'
