@@ -19,11 +19,18 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: COnfigure git
+      run: |
+        author_name=$(git log -1 --format='%an')
+        author_email=$(git log -1 --format='%ae')
+        git config --global user.email "$author_email"
+        git config --global user.name "$author_name"
+        
     - name: Perform rebase
       run: |
         git fetch origin main
         git checkout release/2.14.0
-        git rebase origin/main
+        git merge origin/main
 
     - name: Push changes
       uses: CasperWA/push-protected@v2
