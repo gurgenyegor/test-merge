@@ -40,7 +40,7 @@ jobs:
       with:
         token: ${{ secrets.MY_TOKEN }}
         branch: release/2.14.0
-        unprotect_reviews: True
+        unprotect_reviews: False
         force: True
   #     - name: checkout
   #       uses: actions/checkout@v2
