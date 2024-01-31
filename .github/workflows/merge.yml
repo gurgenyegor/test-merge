@@ -23,7 +23,7 @@ jobs:
       run: |
         git fetch origin main
         git checkout release/2.14.0
-        git merge origin/main
+        git rebase origin/main
 
     - name: Push changes
       uses: CasperWA/push-protected@v2
