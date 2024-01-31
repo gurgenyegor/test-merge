@@ -31,7 +31,7 @@ jobs:
         git fetch origin main
         git checkout release/2.14.0
         git merge origin/main
-        git push origin release/2.14.0
+        git push origin release/2.14.0 --force
 
     # - name: Push changes
     #   uses: CasperWA/push-protected@v2
