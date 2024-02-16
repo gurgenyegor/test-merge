@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "$TEST_ENV"
+echo "$test_env"
