@@ -1,0 +1,18 @@
+name: Remove Branch's
+on:
+  workflow_dispatch:
+
+env:
+  INFRASTRUCTURE_TOKEN: ${{ secrets.INFRASTRUCTURE_TOKEN }}
+  TEST_ENV: 'test'
+
+jobs:
+  remove_old_branches:
+    name: Remove old release branches
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Remove Branches
+      run: ./test.sh
