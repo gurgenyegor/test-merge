@@ -1,8 +1,9 @@
 name: Remove Branch's
 on:
   workflow_dispatch:
-  branch:
-    - main
+  push:
+    branches:
+      - main
 
 env:
   INFRASTRUCTURE_TOKEN: ${{ secrets.INFRASTRUCTURE_TOKEN }}
@@ -11,6 +12,6 @@ env:
 jobs:
   remove_old_branches:
     name: Remove old release branches
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
     - run: id -u && id -g
