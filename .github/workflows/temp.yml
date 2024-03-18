@@ -12,6 +12,6 @@ env:
 jobs:
   remove_old_branches:
     name: Remove old release branches
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
-    - run: id -u && id -g
+    - run: uname
