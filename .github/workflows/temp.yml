@@ -14,4 +14,4 @@ jobs:
     name: Remove old release branches
     runs-on: macos-14
     steps:
-    - run: uname
+    - run: uname -a
