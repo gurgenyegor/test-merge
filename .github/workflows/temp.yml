@@ -14,5 +14,5 @@ jobs:
     name: Remove old release branches
     runs-on: macos-14
     steps:
-    - run:  lsof -i -P | grep LISTEN | grep :$PORT
+    - run:  sudo lsof -i :53
 
