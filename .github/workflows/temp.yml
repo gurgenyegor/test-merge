@@ -15,7 +15,7 @@ jobs:
     runs-on: macos-14
     steps:
     - run:  |
-        sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+        sudo launchctl unload /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
         sudo lsof -i -P -n
         ping google.com
 
