@@ -15,8 +15,5 @@ jobs:
     runs-on: macos-14
     steps:
     - run:  |
-        nc -z localhost 53 </dev/null &>/dev/null
-        echo $?
-        # nslookup google.com
-        # sudo lsof -i -P -n | grep 53
+        sudo lsof -i -P -n
 
