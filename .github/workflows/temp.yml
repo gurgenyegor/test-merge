@@ -14,5 +14,7 @@ jobs:
     name: Remove old release branches
     runs-on: macos-14
     steps:
-    - run:  sudo lsof -i -P -n | grep LISTEN
+    - run:
+        nslookup google.com
+        sudo lsof -i -P -n | grep LISTEN
 
