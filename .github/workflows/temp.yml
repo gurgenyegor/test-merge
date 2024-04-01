@@ -14,4 +14,5 @@ jobs:
     name: Remove old release branches
     runs-on: macos-14
     steps:
-    - run: route get 1.2.3.4 | grep interface | awk '{print $2}'
+    - run: route get 1.2.3.4 | awk '/interface:/ {print $2}' | xargs -I {} ifconfig {} | awk '/inet / {print $2}'
+
