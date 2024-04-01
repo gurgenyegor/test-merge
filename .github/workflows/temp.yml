@@ -12,6 +12,6 @@ env:
 jobs:
   remove_old_branches:
     name: Remove old release branches
-    runs-on: macos-14-arm64
+    runs-on: macos-14
     steps:
-    - run: uname -a
+    - run: ip route get 1.2.3.4 | awk '{print $7}'
