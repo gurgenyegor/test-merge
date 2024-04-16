@@ -8,5 +8,8 @@ jobs:
   setup_job:
     runs-on: macOS-latest
     steps:
-      - name: Checkout
-        run: uname -a
+      - id: create_token
+        uses: tibdex/github-app-token@v2
+      - run: echo  "${{ steps.create_token.outputs.token }}"
+
+      
