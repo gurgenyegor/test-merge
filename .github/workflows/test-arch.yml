@@ -8,6 +8,6 @@ jobs:
   setup_job:
     runs-on: macOS-latest
     steps:
-      - run: yarn --version
+      - run: node -v
 
       
