@@ -1,4 +1,4 @@
-name: 01
+name: 01-test
 on:
   push:
     branches:
@@ -8,8 +8,6 @@ jobs:
   setup_job:
     runs-on: macOS-latest
     steps:
-      - id: create_token
-        uses: tibdex/github-app-token@v2
-      - run: echo  "${{ steps.create_token.outputs.token }}"
+      - run: yarn --version
 
       
