@@ -8,6 +8,8 @@ jobs:
   setup_job:
     runs-on: ubuntu-22.04
     steps:
-      - run: node -v
+      - run: |
+          yarn --version
+          node -v
 
       
