@@ -1,0 +1,25 @@
+name: Automation Test
+
+on:
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Install dependecies
+        run: yarn install
+
+      - name: Run test
+        run: yarn test
