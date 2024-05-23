@@ -1,13 +1,12 @@
-name: Remove Branch's
+name: CI
+# This workflow is triggered when a PR is opened on master or develop branch
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - main
+      - release/*
+      - epic/*
 
-env:
-  INFRASTRUCTURE_TOKEN: ${{ secrets.INFRASTRUCTURE_TOKEN }}
-  TEST_ENV: 'test'
 
 jobs:
   remove_old_branches:
@@ -15,8 +14,5 @@ jobs:
     runs-on: macos-14
     steps:
     - run:  |
-        # sudo launchctl unload /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
-        sudo launchctl load /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
-        sudo lsof -i -P -n
-        ping google.com
+        echo ${{ github.event.head_commit.message }}
 
