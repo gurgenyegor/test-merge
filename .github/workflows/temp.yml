@@ -1,12 +1,12 @@
 name: CI
 # This workflow is triggered when a PR is opened on master or develop branch
 on:
-  pull_request:
-    branches:
-      - main
-      - release/*
-      - epic/*
-
+#  pull_request:
+#    branches:
+#      - main
+#      - release/*
+#      - epic/*
+  push:
 
 jobs:
   remove_old_branches:
