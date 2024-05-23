@@ -11,7 +11,7 @@ on:
 jobs:
   remove_old_branches:
     name: Remove old release branches
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
     - run:  |
         echo ${{ github.event.head_commit.message }}
