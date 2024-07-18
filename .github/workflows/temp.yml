@@ -1,20 +1,50 @@
-name: CI
-# This workflow is triggered when a PR is opened on master or develop branch
+name: 01-manual-deploy
 on:
   push:
-    branches:
-      - main
-
+    branches-ignore:
+      - '*'
+      - '*/*'
+      - '**'
+  workflow_dispatch:
+    inputs:
+      project_id:
+        type: choice
+        description: 'Project ID to deploy'
+        required: true
+        default: 'uc-next'
+        options:
+          - uc-next
+          - springbuilder-x
+      environment:
+        type: choice
+        description: 'Environment to deploy to'
+        required: true
+        default: 'sq1'
+        options:
+          - sq1
+          - sq2
+          - sq3
+          - sq4
+          - sq5
+          - sq6
+          - sq7
+          - sq8
+          - vercel
+          - local
+          - live
+          - stage
+          - qa
+env:
+  PROJECT_ID: ${{ github.event.inputs.project_id }}
+  ENVIRONMENT: ${{ github.event.inputs.environment }}
 
 jobs:
-  remove_old_branches:
-    name: Remove old release branches
-    if: contains(github.event.head_commit.message, 'new service')
-    #if: "contains(github.event.head_commit.message, '[skip test-ci]')"
-    # if: ${{ !contains(github.event.head_commit.message, '#skipci') }}
+  access_check:
     runs-on: ubuntu-latest
     steps:
-    - run:  |
-        echo ${{ github.event.head_commit.message }}
-
-
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test
+        run: |
+          echo $ENVIRONMENT
+          echo $PROJECT_ID
