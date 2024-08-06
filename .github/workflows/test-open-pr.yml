@@ -21,9 +21,6 @@ jobs:
       - name: Get Image tag
         id: image_tag
         run: echo "IMAGE_TAG=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
-
-      - name: 'Make build push'
-        run: 'make build_push TAG=${{ env.IMAGE_TAG }}'
       
       - name: 'Print TAG'
         run: |
