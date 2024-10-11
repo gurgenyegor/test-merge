@@ -4,41 +4,10 @@ on:
   push:
     branches:
       - main
-  
 
-env:
-  PROJECT_ID: 'uc-next'
-  ENVIRONMENT: "local"
-  REGISTRY: 'europe-west1-docker.pkg.dev'
-
-permissions:
-  contents: write
-  pull-requests: write
 jobs:
   setup_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Get Image tag
-        id: image_tag
-        run: echo "IMAGE_TAG=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
-      
-      - name: 'Print TAG'
-        run: |
-          echo "##################"
-          echo "New image tag is: ${{ env.IMAGE_TAG }}"
-
-      - name: Create commits
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          sed -i "s/^TAG := .*/TAG := ${{ env.IMAGE_TAG }}/" Makefile
-          git add Makefile
-          git commit -am "Update base image tag."
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: test
+        run: which gcloud
