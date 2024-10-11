@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: test
         run: |
-          which gcloud
+          which cat
