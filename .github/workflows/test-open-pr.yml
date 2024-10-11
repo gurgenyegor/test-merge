@@ -11,5 +11,4 @@ jobs:
     steps:
       - name: test
         run: |
-          cat /etc/os-release
           which gcloud
