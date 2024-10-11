@@ -10,4 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: which gcloud
+        run: |
+          cat /etc/os-release
+          which gcloud
