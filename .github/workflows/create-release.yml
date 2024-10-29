@@ -20,5 +20,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: test
-        run: |
-          echo ${{ steps.release-drafter.outputs.body }}
+        run: 'echo ${{ steps.release-drafter.outputs.body }}'
