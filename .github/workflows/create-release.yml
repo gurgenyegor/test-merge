@@ -21,6 +21,5 @@ jobs:
 
       - name: test
         run: |
-          echo ${{ steps.release-drafter.outputs.upload_url }}
-          echo ${{ steps.release-drafter.outputs.body }}
+          echo ${{ steps.release-drafter.outputs.body }} && \
           echo ${{ steps.release-drafter.outputs.html_url }}
