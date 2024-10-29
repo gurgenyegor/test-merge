@@ -1,17 +1,24 @@
-name: Changelog
+name: Create release
+
 on:
   push:
-    branches:
-      - main
-jobs:
-  changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "✏️ Generate release changelog"
-        uses: janheinrichmerker/action-github-changelog-generator@v2.3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          changelog_filename: /tmp/CHANGELOG.md
+    tags:
+      - v*
 
-      - name: cat
-        run: cat /tmp/CHANGELOG.md
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release pushed tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+              --generate-notes
