@@ -1,49 +1,15 @@
-name: 01-manual-deploy
+name: Changelog CI
+
 on:
-  push:
-    branches-ignore:
-      - '*'
-      - '*/*'
-      - '**'
-  workflow_dispatch:
-    inputs:
-      project_id:
-        type: choice
-        description: 'Project ID to deploy'
-        required: true
-        default: 'uc-next'
-        options:
-          - uc-next
-          - springbuilder-x
-      environment:
-        type: choice
-        description: 'Environment to deploy to'
-        required: true
-        default: 'sq1'
-        options:
-          - sq1
-          - sq2
-          - sq3
-          - sq4
-          - sq5
-          - sq6
-          - sq7
-          - sq8
-          - vercel
-          - local
-          - live
-          - stage
-          - qa
-env:
-  PROJECT_ID: ${{ github.event.inputs.project_id }}
-  ENVIRONMENT: ${{ github.event.inputs.environment }}
+  pull_request:
+    types: [ opened ]
 
 jobs:
-  access_check:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Test
-        run: |
-          gh --version
+      - uses: actions/checkout@v2
+
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.1.2
