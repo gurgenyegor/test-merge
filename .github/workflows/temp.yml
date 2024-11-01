@@ -14,38 +14,12 @@ permissions:
   pull-requests: write
 
 jobs:
-  autoupdate_master_pr:
-    name: Update master branch PR's
-    runs-on: ubuntu-latest
-    steps:
-      - name: Autoupdating master PR's
-        id: autoupdate
-        uses: docker://chinthakagodawita/autoupdate-action:v1
-        env:
-          GITHUB_TOKEN: '${{ secrets.MERGE_TOKEN }}'
-          RETRY_COUNT: ${{ env.RETRY_COUNT }}
-          RETRY_SLEEP: ${{ env.RETRY_SLEEP }}
-          MERGE_CONFLICT_ACTION: ${{ env.MERGE_CONFLICT_ACTION }}
-          MERGE_MSG: "Merge master branch [skip ci]"
-      - run: echo 'Merge conflicts found!'
-        if: ${{ steps.autoupdate.outputs.conflicted == 'true' }}
-      - run: echo 'No merge conflictssss'
-        if: ${{ ! steps.autoupdate.outputs.conflicted == 'true' }}
-
-
   update_release_branch:
     name: Update relase* branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: 'Get External'
-        run: 'make get-external INFRASTRUCTURE_TOKEN=${{ secrets.INFRASTRUCTURE_TOKEN }}'
-
-      - name: Set output
-        id: set_output
-        run: make export-variable-github
-
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
@@ -69,7 +43,6 @@ jobs:
             from_branch: master
             target_branch: ${{ vars.RELEASE_VERSION }}
             github_token: ${{ steps.app-token.outputs.token }}
-        if: ${{ env.SKIP_RELEASE != 'true' }}
 
       # - name: Run ${{ env.AUTODEPLOY_WORKFLOW }} workflow on branch ${{ vars.RELEASE_VERSION }}
       #   run: gh workflow run ${{ env.AUTODEPLOY_WORKFLOW }} --ref ${{ vars.RELEASE_VERSION }}
